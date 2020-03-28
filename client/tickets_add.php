@@ -3,9 +3,9 @@ session_start();
 require_once '../db/db.php';
 
 $tickets_id = $_POST['id'];
-//echo $tickets_id;
+
 $user_id = $_SESSION['user_id'];
-//echo $user_id;
+
 
     $sql1 = 'SELECT company, departure, destination, distance, price FROM tickets  WHERE id = :tickets_id';
     $params1 = ['tickets_id' => $tickets_id];
@@ -26,7 +26,6 @@ $user_id = $_SESSION['user_id'];
     $string2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     $user_name=implode($string2);
 
-//    $user_n = 'vitaljka';
 
     $sql3 = 'INSERT INTO added_tickets (user_name, company, departure, destination, distance, price, user_id, tickets_id) VALUES ( :user_name, :company, :departure, :destination, :distance, :price, :user_id,:tickets_id )';
     $params3 = ['user_name' => $user_name, 'company' => $company, 'departure' => $departure, 'destination' => $destination, 'distance' => $distance, 'price' => $price   , 'user_id' => $user_id, 'tickets_id' => $tickets_id];
@@ -34,10 +33,5 @@ $user_id = $_SESSION['user_id'];
     $stmt3->execute($params3);
 
     header("Location: ../title/buy.php");
-
-//    $sql4 = 'INSERT INTO added_tickets (user_name) VALUE (:user_name)';
-//    $params4 = ['user_name' => $user_name];
-//    $stmt4 = $db->prepare($sql4);
-//    $stmt4->execute($params4);
 
 ?>
