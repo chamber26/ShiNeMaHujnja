@@ -7,7 +7,6 @@ if ( !empty($login) && !empty($pass) ) {
 
     $sql = 'SELECT login, password FROM admins WHERE login = :login';
     $params1 = [':login' => $login];
-
     $stmt = $db->prepare($sql);
     $stmt->execute($params1);
 
